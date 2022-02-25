@@ -1,0 +1,25 @@
+[c/3ABC7A:Description:]
+Shaggy's Addon Races is a mod that gives you even more races based around the main mod, MrPlague's Authentic Races! 
+
+[c/3ABC7A:Races:]
+-Baphoma
+-Protogen
+-Kitsune
+-Harpy
+
+[c/3ABC7A:Credits:]
+Authors:
+-Shaggy Overlord (animator, spriter and coder)
+-CrocWithShades (animator and spriter)
+-Aelfsalia (animator and spriter)
+-Kazun (Help with code)
+-MrPlague (Help with code)
+
+[c/FF0000:Patreons:]
+
+[c/FFE43E:Silence EXE]
+
+
+[c/3ABC7A:The Addon Races server:]
+
+https://discord.gg/DzUXUVWhd6
