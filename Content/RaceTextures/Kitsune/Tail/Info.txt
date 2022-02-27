@@ -1,0 +1,4 @@
+Alright, this might look a bit confusing, if it does, I'll do my best do explain it lol
+
+ Each tail is made to be added "on top" of each other, basically, when they overlap the darker shade on the tail will turn into a slightly lighter shade, so there can still be a distinct lineout
+ So, the tails need to be added in that sequence, otherwise they'll look off :')

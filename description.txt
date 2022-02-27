@@ -12,6 +12,7 @@ Authors:
 -Shaggy Overlord (animator, spriter and coder)
 -CrocWithShades (animator and spriter)
 -Aelfsalia (animator and spriter)
+-AxeBane (Coder)
 -Kazun (Help with code)
 -MrPlague (Help with code)
 
