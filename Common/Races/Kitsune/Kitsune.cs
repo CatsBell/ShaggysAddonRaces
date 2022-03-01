@@ -122,7 +122,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					tailCount++;
 				}
 				if (tailCount != oldTailCount)
-                {
+				{
 					Main.NewText("(placeholder) New tail get. Tail Count: " + tailCount);
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
