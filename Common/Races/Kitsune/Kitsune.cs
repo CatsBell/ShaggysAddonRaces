@@ -57,7 +57,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		public override void ResetEffects(Player player)
 		{
 			if (modPlayer == null)
-            {
+			{
 				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
