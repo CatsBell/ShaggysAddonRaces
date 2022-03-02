@@ -4,6 +4,51 @@
     "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {}
   },
   "projects": {
+    "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj",
+        "projectName": "MrPlagueRaces",
+        "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj",
+        "packagesPath": "C:\\Users\\BOOGALOO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\BOOGALOO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net45"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "targetAlias": "net45",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net45": {
+          "targetAlias": "net45",
+          "dependencies": {
+            "tModLoader.CodeAssist": {
+              "target": "Package",
+              "version": "[0.1.*, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +72,11 @@
         "frameworks": {
           "net45": {
             "targetAlias": "net45",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj": {
+                "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

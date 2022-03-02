@@ -4,6 +4,19 @@
     ".NETFramework,Version=v4.5": {
       "tModLoader.CodeAssist/0.1.3": {
         "type": "package"
+      },
+      "MrPlagueRaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5",
+        "dependencies": {
+          "tModLoader.CodeAssist": "0.1.0"
+        },
+        "compile": {
+          "bin/placeholder/MrPlagueRaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MrPlagueRaces.dll": {}
+        }
       }
     }
   },
@@ -23,10 +36,16 @@
         "tools/install.ps1",
         "tools/uninstall.ps1"
       ]
+    },
+    "MrPlagueRaces/1.0.0": {
+      "type": "project",
+      "path": "../MrPlagueRaces/MrPlagueRaces.csproj",
+      "msbuildProject": "../MrPlagueRaces/MrPlagueRaces.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.5": [
+      "MrPlagueRaces >= 1.0.0",
       "tModLoader.CodeAssist >= 0.1.*"
     ]
   },
@@ -56,7 +75,11 @@
       "frameworks": {
         "net45": {
           "targetAlias": "net45",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj": {
+              "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
