@@ -150,17 +150,18 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
-			
-			int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
-			layers.Insert(tailLayer, KitsuneTail);
-			
-			layers.Insert(tailLayer+1, KitsuneTail_Color);
-			base.ModifyDrawLayers(player, layers);
+			if (modPlayer != null) {
+				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
+				layers.Insert(tailLayer, KitsuneTail);
 
-			bool hideChestplate = modPlayer.hideChestplate;
-			bool hideLeggings = modPlayer.hideLeggings;
-			
-			modPlayer.updatePlayerSprites("MrPlagueRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+				layers.Insert(tailLayer+1, KitsuneTail_Color);
+				base.ModifyDrawLayers(player, layers);
+
+				bool hideChestplate = modPlayer.hideChestplate;
+				bool hideLeggings = modPlayer.hideLeggings;
+
+				modPlayer.updatePlayerSprites("MrPlagueRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+			}
 		}
 
 
