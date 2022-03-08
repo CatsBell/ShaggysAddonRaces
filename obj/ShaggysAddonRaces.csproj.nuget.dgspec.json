@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {}
+    "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggysAddonRaces\\ShaggysAddonRaces.csproj": {}
   },
   "projects": {
-    "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {
+    "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggysAddonRaces\\ShaggysAddonRaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+        "projectUniqueName": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggysAddonRaces\\ShaggysAddonRaces.csproj",
         "projectName": "ShaggysAddonRaces",
-        "projectPath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+        "projectPath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggysAddonRaces\\ShaggysAddonRaces.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
+        "outputPath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggysAddonRaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",

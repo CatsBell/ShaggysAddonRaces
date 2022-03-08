@@ -31,19 +31,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BOOGALOO\\.nuget\\packages\\": {}
+    "C:\\Users\\willi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
-      "projectName": "MrPlagueCustomRace",
-      "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
-      "packagesPath": "C:\\Users\\BOOGALOO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
+      "projectUniqueName": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+      "projectName": "ShaggysAddonRaces",
+      "projectPath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+      "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\BOOGALOO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -74,7 +74,7 @@
             "version": "[0.1.*, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

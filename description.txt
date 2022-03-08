@@ -9,16 +9,17 @@ Shaggy's Addon Races is a mod that gives you even more races based around the ma
 
 [c/3ABC7A:Credits:]
 Authors:
--Shaggy Overlord (animator, spriter and coder)
--CrocWithShades (animator and spriter)
--Aelfsalia (animator and spriter)
+-Shaggy Overlord (Coder)
+-CrocWithShades (Animator and spriter)
+-Aelfsalia (Animator and spriter)
 -AxeBane (Coder)
 -Kazun (Help with code)
 -MrPlague (Help with code)
 
-[c/FF0000:Patreons:]
+Patreons:
 
-[c/FFE43E:Silence EXE]
+[c/FFE43E:Crystal Moonbeam]
+[c/FFE43E:WrathOfOlympus]
 
 
 [c/3ABC7A:The Addon Races server:]

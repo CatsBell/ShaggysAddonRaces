@@ -74,9 +74,14 @@ namespace ShaggyAddonRaces
         public void PostUpdateMiscEffects(Player player)
         {
             //What kills the Kobold sunlight debuff
-            if (player.armor[0].type == ItemID.Sunglasses || player.armor[0].type == ItemID.Goggles || player.armor[0].type == ItemID.SteampunkGoggles)
+            if (Main.eclipse == true || player.armor[0].type == ItemID.Sunglasses || player.armor[0].type == ItemID.Goggles || player.armor[0].type == ItemID.SteampunkGoggles)
             {
                 player.buffImmune[_MrPlagueRaces.BuffType("KoboldSunlight")] = true;
+            }
+            //What kills the Vampire sunlight debuff
+            if (Main.eclipse == true)
+            {
+                player.buffImmune[_MrPlagueRaces.BuffType("VampireBurn")] = true;
             }
         }
     }

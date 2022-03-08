@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Flf6mb5ZMkTN2kj91jFQm/h/ELlanHqBeG+UlzpPa0ib2/T3vB30YyKfiQ2de70HobTOnyzu376gGApEco4G7Q==",
+  "dgSpecHash": "yWoVc45c+iPUlGnr0oktO6673KDSyYV3nTM6LV5C6uRUxhQlTQIX9iKHe5w+qqm6p33Gd2ILGeoKaZOhdPwU4w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+  "projectFilePath": "C:\\Users\\willi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\BOOGALOO\\.nuget\\packages\\tmodloader.codeassist\\0.1.3\\tmodloader.codeassist.0.1.3.nupkg.sha512"
+    "C:\\Users\\willi\\.nuget\\packages\\tmodloader.codeassist\\0.1.3\\tmodloader.codeassist.0.1.3.nupkg.sha512"
   ],
   "logs": []
 }
