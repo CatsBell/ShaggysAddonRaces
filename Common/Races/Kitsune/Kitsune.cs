@@ -72,15 +72,18 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			Init(player);
 			if (modPlayer.RaceStats)
-			{
-				tailCount = 1;
-				player.statLifeMax2 -= 25;
+            {
+				/*
+                tailCount = 1;
+				*/
+                player.statLifeMax2 -= 25;
 				player.statManaMax2 += player.statManaMax2 / 5;
 				player.statDefense -= 2;
 				player.manaRegen += 20 / 100;
 				player.meleeDamage -= player.meleeDamage / 10;
 				player.magicDamage += player.magicDamage / 15;
 				player.runAcceleration += player.runAcceleration / 5;
+				/*
 				if (NPC.downedBoss1)
 				{
 					player.statManaMax2 += 20;
@@ -129,9 +132,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					player.manaRegenBonus += 10;
 					tailCount++;
 				}
+				*/
 				if (tailCount != oldTailCount)
 				{
-					Main.NewText("Kitsune Tail Count: " + tailCount);
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
@@ -169,8 +172,12 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			}
 		}
 
+<<<<<<< Updated upstream
 		// Original tail code provided by Kazun (thanks!). Refactord by AxeBane to remove some jank and somehow introduce some more.
 
+=======
+		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
+>>>>>>> Stashed changes
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
