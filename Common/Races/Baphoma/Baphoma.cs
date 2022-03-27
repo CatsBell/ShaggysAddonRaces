@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using MrPlagueRaces;
 using Terraria.ModLoader;
 using MrPlagueRaces.Common.Races;
 using ShaggyAddonRaces.Content.Buffs;

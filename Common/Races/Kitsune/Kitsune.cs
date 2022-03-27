@@ -10,7 +10,7 @@ using MrPlagueRaces.Common.Races;
 using ShaggyAddonRaces.Content.Buffs;
 using ShaggyAddonRaces.Content.Items;
 
-namespace ShaggyAddonRaces.Common.Races.Kitsune 
+namespace ShaggyAddonRaces.Common.Races.Kitsune
 {
 	public class Kitsune : Race
 	{
@@ -67,23 +67,27 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			return true;
 		}
-
+		public override void Load(Player player)
+		{
+			var modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+			if (modPlayer.RaceStats)
+			{
+				player.statLife += 0;
+			}
+		}
 		public override void ResetEffects(Player player)
 		{
 			Init(player);
 			if (modPlayer.RaceStats)
-            {
-				/*
-                tailCount = 1;
-				*/
-                player.statLifeMax2 -= 25;
+			{
+				tailCount = 1;
+				player.statLifeMax2 -= 25;
 				player.statManaMax2 += player.statManaMax2 / 5;
 				player.statDefense -= 2;
 				player.manaRegen += 20 / 100;
 				player.meleeDamage -= player.meleeDamage / 10;
 				player.magicDamage += player.magicDamage / 15;
 				player.runAcceleration += player.runAcceleration / 5;
-				/*
 				if (NPC.downedBoss1)
 				{
 					player.statManaMax2 += 20;
@@ -132,9 +136,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					player.manaRegenBonus += 10;
 					tailCount++;
 				}
-				*/
 				if (tailCount != oldTailCount)
 				{
+					Main.NewText("Kitsune Tail Count: " + tailCount);
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
@@ -158,11 +162,12 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
 			Init(player);
-			if (modPlayer != null) {
+			if (modPlayer != null)
+			{
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
 				layers.Insert(tailLayer, KitsuneTail);
 
-				layers.Insert(tailLayer+1, KitsuneTail_Color);
+				layers.Insert(tailLayer + 1, KitsuneTail_Color);
 				base.ModifyDrawLayers(player, layers);
 
 				bool hideChestplate = modPlayer.hideChestplate;
@@ -172,16 +177,12 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			}
 		}
 
-<<<<<<< Updated upstream
-		// Original tail code provided by Kazun (thanks!). Refactord by AxeBane to remove some jank and somehow introduce some more.
+		// Original tail code provided by Kazun (thanks!). Refactored by AxeBane to remove some jank and somehow introduce some more.
 
-=======
-		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
->>>>>>> Stashed changes
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			
+
 			int drawX = (int)(drawPlayer.position.X - 28);
 			int drawY = (int)(drawPlayer.position.Y + 4 + drawPlayer.gfxOffY);
 

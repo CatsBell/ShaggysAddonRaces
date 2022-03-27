@@ -62,7 +62,7 @@ namespace ShaggyAddonRaces
                         {
                             player.AddBuff(_MrPlagueRaces.BuffType("VampireBat"), 2);
                         }
-
+                        /*
                         //Kobold
                         if (player.nightVision == true)
                         {
@@ -111,6 +111,7 @@ namespace ShaggyAddonRaces
                                 }
                             }
                         }
+                        */
 
                         //Examplian
                         if (SoundType.Custom.Equals("Sounds/Derpkin_Hurt"))
