@@ -73,17 +73,20 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		// Proper initialization function that defines everything. In theory.
 		public override void Initialize(Player player) {
+			ShaggyAddonRaces.Logger.Info("Initializing...");
 			globalPlayer = player;
+			ShaggyAddonRaces.Logger.Info("Defining modplayer...");
 			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 			Item familiarshirt = new Item();
 			Item familiarpants = new Item();
 			familiarshirt.SetDefaults(ItemID.FamiliarShirt);
 			familiarpants.SetDefaults(ItemID.FamiliarPants);
+			ShaggyAddonRaces.Logger.Info("Defining tails...");
 			texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 			texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 		}
 
-        public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
 			return true;
 		}
@@ -201,13 +204,18 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 
+			if (texture_Color.IsDisposed || texture_Tail.IsDisposed)
+			{
+				// catch to make absolutely sure stuff isn't broken
+				Initialize(player);
+			}
+
 			if (modPlayer != null && player != null && layers != null)
 			{
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
 				layers.Insert(tailLayer, KitsuneTail);
 				layers.Insert(tailLayer + 1, KitsuneTail_Color);
 				base.ModifyDrawLayers(player, layers);
-				ShaggyAddonRaces.Logger.Info(layers.ToArray());
 				bool hideChestplate = modPlayer.hideChestplate;
 				bool hideLeggings = modPlayer.hideLeggings;
 				modPlayer.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
