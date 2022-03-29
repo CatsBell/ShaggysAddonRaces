@@ -2,5 +2,5 @@
 .git/
 obj/
 .editorconfig
-ShaggyAddonRaces - Backup.csproj
+/ShaggyAddonRaces - Backup.csproj
 *.cache

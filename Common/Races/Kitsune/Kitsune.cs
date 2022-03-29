@@ -67,7 +67,14 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			return true;
 		}
-
+		public override void Load(Player player)
+		{
+			var modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+			if (modPlayer.RaceStats)
+			{
+				player.statLife += 0;
+			}
+		}
 		public override void ResetEffects(Player player)
 		{
 			Init(player);
