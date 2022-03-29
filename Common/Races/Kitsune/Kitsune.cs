@@ -52,6 +52,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		private void Init(Player player)
 		{
+			// Redundant initialize every frame.
 			if (modPlayer == null)
 			{
 				ShaggyAddonRaces.Logger.Info("Modplayer Null, defining...");
@@ -70,7 +71,19 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			}
 		}
 
-		public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		// Proper initialization function that defines everything. In theory.
+		public override void Initialize(Player player) {
+			globalPlayer = player;
+			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+			Item familiarshirt = new Item();
+			Item familiarpants = new Item();
+			familiarshirt.SetDefaults(ItemID.FamiliarShirt);
+			familiarpants.SetDefaults(ItemID.FamiliarPants);
+			texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+			texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+		}
+
+        public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
 			return true;
 		}
@@ -140,6 +153,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 				if (tailCount != oldTailCount)
 				{
+					// Update the tail sprites!
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
