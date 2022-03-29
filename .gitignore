@@ -1,6 +1,4 @@
 .vs/
 .git/
-obj/
 .editorconfig
-ShaggyAddonRaces - Backup.csproj
-*.cache
+/ShaggyAddonRaces - Backup.csproj
