@@ -46,7 +46,6 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		private static int oldTailCount = 1;
 		private Mod ShaggyAddonRaces = ModLoader.GetMod("ShaggyAddonRaces");
 		private MrPlagueRaces.MrPlagueRacesPlayer modPlayer = null;
-		private Player globalPlayer = null;
 		private static Texture2D texture_Color;
 		private static Texture2D texture_Tail;
 
@@ -54,12 +53,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			if (modPlayer == null)
 			{
-<<<<<<< HEAD
 				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>(); // grab the modPlayer object associated with it.
-=======
-				globalPlayer = player;
-				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
->>>>>>> 1e5989fbbb64f6c0f1b53f99d36626658c6208e7
 				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 				Item familiarshirt = new Item();
@@ -78,16 +72,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			Init(player);
 			if (modPlayer.RaceStats)
-<<<<<<< HEAD
 			{
 				tailCount = 1;
 				player.statLifeMax2 -= 25;
-=======
-            {
-                tailCount = 1;
-
-                player.statLifeMax2 -= 25;
->>>>>>> 1e5989fbbb64f6c0f1b53f99d36626658c6208e7
 				player.statManaMax2 += player.statManaMax2 / 5;
 				player.statDefense -= 2;
 				player.manaRegen += 20 / 100;
@@ -142,13 +129,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					player.manaRegenBonus += 10;
 					tailCount++;
 				}
-
 				if (tailCount != oldTailCount)
 				{
-<<<<<<< HEAD
 					Main.NewText("Kitsune Tail Count: " + tailCount);
-=======
->>>>>>> 1e5989fbbb64f6c0f1b53f99d36626658c6208e7
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
@@ -168,10 +151,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				player.skinVariant = 0;
 			}
 		}
-		
+
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
-<<<<<<< HEAD
 			Init(player);
 			if (modPlayer != null)
 			{
@@ -190,27 +172,6 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		// Original tail code provided by Kazun (thanks!). Refactored by AxeBane to remove some jank and somehow introduce some more.
 
-=======
-			if (player == null) {
-				player = globalPlayer;
-			}
-			if (modPlayer != null && player != null) {
-				
-				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
-				layers.Insert(tailLayer, KitsuneTail);
-
-				layers.Insert(tailLayer+1, KitsuneTail_Color);
-				base.ModifyDrawLayers(player, layers);
-				
-				bool hideChestplate = modPlayer.hideChestplate;
-				bool hideLeggings = modPlayer.hideLeggings;
-				
-				modPlayer.updatePlayerSprites("MrPlagueRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
-			}
-		}
-
-		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
->>>>>>> 1e5989fbbb64f6c0f1b53f99d36626658c6208e7
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
