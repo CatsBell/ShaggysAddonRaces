@@ -46,6 +46,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		private static int oldTailCount = 1;
 		private Mod ShaggyAddonRaces = ModLoader.GetMod("ShaggyAddonRaces");
 		private MrPlagueRaces.MrPlagueRacesPlayer modPlayer = null;
+		private Player globalPlayer = null;
 		private static Texture2D texture_Color;
 		private static Texture2D texture_Tail;
 
@@ -53,7 +54,8 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			if (modPlayer == null)
 			{
-				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>(); // grab the modPlayer object associated with it.
+				globalPlayer = player;
+				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 				Item familiarshirt = new Item();
@@ -154,30 +156,28 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				player.skinVariant = 0;
 			}
 		}
-
+		
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
-			Init(player);
-			if (modPlayer != null) {
+			if (player == null) {
+				player = globalPlayer;
+			}
+			if (modPlayer != null && player != null) {
+				
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
 				layers.Insert(tailLayer, KitsuneTail);
 
 				layers.Insert(tailLayer+1, KitsuneTail_Color);
 				base.ModifyDrawLayers(player, layers);
-
+				
 				bool hideChestplate = modPlayer.hideChestplate;
 				bool hideLeggings = modPlayer.hideLeggings;
-
+				
 				modPlayer.updatePlayerSprites("MrPlagueRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
 			}
 		}
 
-<<<<<<< Updated upstream
-		// Original tail code provided by Kazun (thanks!). Refactord by AxeBane to remove some jank and somehow introduce some more.
-
-=======
 		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
->>>>>>> Stashed changes
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
