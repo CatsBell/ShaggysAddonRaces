@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {}
+    "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {
+    "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+        "projectUniqueName": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
         "projectName": "MrPlagueCustomRace",
-        "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
-        "packagesPath": "C:\\Users\\BOOGALOO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
+        "projectPath": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+        "packagesPath": "C:\\Users\\AxeBane\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\BOOGALOO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AxeBane\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +27,11 @@
         "frameworks": {
           "net45": {
             "targetAlias": "net45",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj": {
+                "projectPath": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -45,7 +49,7 @@
               "version": "[0.1.*, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
