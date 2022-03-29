@@ -4,19 +4,6 @@
     ".NETFramework,Version=v4.5": {
       "tModLoader.CodeAssist/0.1.3": {
         "type": "package"
-      },
-      "MrPlagueRaces/1.0.0": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
-        "dependencies": {
-          "tModLoader.CodeAssist": "0.1.0"
-        },
-        "compile": {
-          "bin/placeholder/MrPlagueRaces.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/MrPlagueRaces.dll": {}
-        }
       }
     }
   },
@@ -36,33 +23,28 @@
         "tools/install.ps1",
         "tools/uninstall.ps1"
       ]
-    },
-    "MrPlagueRaces/1.0.0": {
-      "type": "project",
-      "path": "../MrPlagueRaces/MrPlagueRaces.csproj",
-      "msbuildProject": "../MrPlagueRaces/MrPlagueRaces.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.5": [
-      "MrPlagueRaces >= 1.0.0",
+      "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj",
       "tModLoader.CodeAssist >= 0.1.*"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BOOGALOO\\.nuget\\packages\\": {}
+    "C:\\Users\\AxeBane\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+      "projectUniqueName": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
       "projectName": "MrPlagueCustomRace",
-      "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
-      "packagesPath": "C:\\Users\\BOOGALOO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
+      "projectPath": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\ShaggyAddonRaces.csproj",
+      "packagesPath": "C:\\Users\\AxeBane\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ShaggyAddonRaces\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\BOOGALOO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AxeBane\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -76,8 +58,8 @@
         "net45": {
           "targetAlias": "net45",
           "projectReferences": {
-            "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj": {
-              "projectPath": "C:\\Users\\BOOGALOO\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj"
+            "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj": {
+              "projectPath": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj"
             }
           }
         }
@@ -97,8 +79,19 @@
             "version": "[0.1.*, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\AxeBane\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\MrPlagueRaces\\MrPlagueRaces.csproj",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.5"
+      ]
+    }
+  ]
 }

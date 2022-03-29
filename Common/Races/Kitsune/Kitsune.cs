@@ -75,9 +75,8 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			Init(player);
 			if (modPlayer.RaceStats)
             {
-				/*
                 tailCount = 1;
-				*/
+
                 player.statLifeMax2 -= 25;
 				player.statManaMax2 += player.statManaMax2 / 5;
 				player.statDefense -= 2;
@@ -85,7 +84,6 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				player.meleeDamage -= player.meleeDamage / 10;
 				player.magicDamage += player.magicDamage / 15;
 				player.runAcceleration += player.runAcceleration / 5;
-				/*
 				if (NPC.downedBoss1)
 				{
 					player.statManaMax2 += 20;
@@ -134,7 +132,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					player.manaRegenBonus += 10;
 					tailCount++;
 				}
-				*/
+
 				if (tailCount != oldTailCount)
 				{
 					oldTailCount = tailCount;
