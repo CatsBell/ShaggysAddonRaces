@@ -4,3 +4,4 @@ obj/
 .editorconfig
 ShaggyAddonRaces - Backup.csproj
 *.cache
+/bin/Debug/net45
