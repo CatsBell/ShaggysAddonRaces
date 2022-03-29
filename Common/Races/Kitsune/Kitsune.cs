@@ -57,12 +57,16 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				ShaggyAddonRaces.Logger.Info("Modplayer Null, defining...");
 				globalPlayer = player;
 				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
-				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
-				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 				Item familiarshirt = new Item();
 				Item familiarpants = new Item();
 				familiarshirt.SetDefaults(ItemID.FamiliarShirt);
 				familiarpants.SetDefaults(ItemID.FamiliarPants);
+			}
+
+			if (texture_Color == null || texture_Tail == null)
+			{
+				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 			}
 		}
 
