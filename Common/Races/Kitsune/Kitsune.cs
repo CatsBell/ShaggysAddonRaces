@@ -52,8 +52,10 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		private void Init(Player player)
 		{
+			ShaggyAddonRaces.Logger.Info("Init called...");
 			if (modPlayer == null)
 			{
+				ShaggyAddonRaces.Logger.Info("Modplayer Null, defining...");
 				globalPlayer = player;
 				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
@@ -72,6 +74,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		public override void ResetEffects(Player player)
 		{
+			ShaggyAddonRaces.Logger.Info("ResetEffects called...");
 			Init(player);
 			if (modPlayer.RaceStats)
 			{
@@ -144,6 +147,12 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		public override void ModifyDrawInfo(Player player, Mod mod, ref PlayerDrawInfo drawInfo)
 		{
+			ShaggyAddonRaces.Logger.Info("ModifyDrawInfo called...");
+			if (player == null)
+			{
+				player = globalPlayer;
+				ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
+			}
 			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>(); // Have to fetch the modplayer again for character screen shenanigans
 			if (modPlayer.resetDefaultColors && Main.gameMenu)
 			{
@@ -154,130 +163,155 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				player.skinVariant = 0;
 			}
 		}
-
+		
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
+			ShaggyAddonRaces.Logger.Info("ModifyDrawLayers called...");
 			if (player == null)
 			{
 				player = globalPlayer;
+				ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
 			}
+			
+			if (layers == null)
+            {
+				ShaggyAddonRaces.Logger.Warn("LAYERS IS NULL");
+			}
+
+			ShaggyAddonRaces.Logger.Info("Defining MODPLAYER");
+			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+
 			if (modPlayer != null && player != null && layers != null)
 			{
-
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
+				ShaggyAddonRaces.Logger.Info("Defined tailLayer as: " + tailLayer);
 				layers.Insert(tailLayer, KitsuneTail);
-
+				ShaggyAddonRaces.Logger.Info("Inserted tailLayer");
 				layers.Insert(tailLayer + 1, KitsuneTail_Color);
+				ShaggyAddonRaces.Logger.Info("Inserted tailLayer_Color");
+				ShaggyAddonRaces.Logger.Info("About to modify DrawLayers...");
 				base.ModifyDrawLayers(player, layers);
-
+				ShaggyAddonRaces.Logger.Info(player + " exists.");
+				ShaggyAddonRaces.Logger.Info(layers.Count + " layers defined.");
+				ShaggyAddonRaces.Logger.Info(layers.ToArray());
+				ShaggyAddonRaces.Logger.Info("Setting chestplate info...");
 				bool hideChestplate = modPlayer.hideChestplate;
+				ShaggyAddonRaces.Logger.Info("Setting leggings info...");
 				bool hideLeggings = modPlayer.hideLeggings;
-
-				modPlayer.updatePlayerSprites("MrPlagueRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+				ShaggyAddonRaces.Logger.Info("Updating player sprites...");
+				modPlayer.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+				ShaggyAddonRaces.Logger.Info("Done!");
 			}
+			
 		}
 
 		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
-			Player drawPlayer = drawInfo.drawPlayer;
-
-			int drawX = (int)(drawPlayer.position.X - 28);
-			int drawY = (int)(drawPlayer.position.Y + 4 + drawPlayer.gfxOffY);
-
-			if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
+			if (drawInfo.GetType() != null)
 			{
-				drawY = (int)(drawPlayer.position.Y + 2 + drawPlayer.gfxOffY);
-			}
+				Player drawPlayer = drawInfo.drawPlayer;
 
-			SpriteEffects flip = SpriteEffects.None;
+				int drawX = (int)(drawPlayer.position.X - 28);
+				int drawY = (int)(drawPlayer.position.Y + 4 + drawPlayer.gfxOffY);
 
-			if (drawPlayer.direction == -1)
-			{
-				if (drawPlayer.gravDir == -1)
+				if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
 				{
-					flip = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+					drawY = (int)(drawPlayer.position.Y + 2 + drawPlayer.gfxOffY);
+				}
+
+				SpriteEffects flip = SpriteEffects.None;
+
+				if (drawPlayer.direction == -1)
+				{
+					if (drawPlayer.gravDir == -1)
+					{
+						flip = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+
+						drawY = (int)(drawPlayer.position.Y + 30 + drawPlayer.gfxOffY);
+						drawX = (int)(drawPlayer.position.X + 30 + drawPlayer.gfxOffY);
+
+						if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
+						{
+							drawY = (int)(drawPlayer.position.Y + 32 + drawPlayer.gfxOffY);
+						}
+					}
+					else
+					{
+						flip = SpriteEffects.FlipHorizontally;
+						drawX = (int)(drawPlayer.position.X + 34);
+					}
+				}
+
+				if (drawPlayer.gravDir == -1 && drawPlayer.direction != -1)
+				{
+					flip = SpriteEffects.FlipVertically;
 
 					drawY = (int)(drawPlayer.position.Y + 30 + drawPlayer.gfxOffY);
-					drawX = (int)(drawPlayer.position.X + 30 + drawPlayer.gfxOffY);
 
 					if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
 					{
 						drawY = (int)(drawPlayer.position.Y + 32 + drawPlayer.gfxOffY);
 					}
 				}
-				else
-				{
-					flip = SpriteEffects.FlipHorizontally;
-					drawX = (int)(drawPlayer.position.X + 34);
-				}
+
+				Main.playerDrawData.Add(new DrawData(texture_Tail, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.skinColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0));
 			}
-
-			if (drawPlayer.gravDir == -1 && drawPlayer.direction != -1)
-			{
-				flip = SpriteEffects.FlipVertically;
-
-				drawY = (int)(drawPlayer.position.Y + 30 + drawPlayer.gfxOffY);
-
-				if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
-				{
-					drawY = (int)(drawPlayer.position.Y + 32 + drawPlayer.gfxOffY);
-				}
-			}
-
-			Main.playerDrawData.Add(new DrawData(texture_Tail, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.skinColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0));
 		});
 
 		public readonly PlayerLayer KitsuneTail_Color = new PlayerLayer("Kitsune", "KitsuneTail_Color", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
-			Player drawPlayer = drawInfo.drawPlayer;
-
-			int drawX = (int)(drawPlayer.position.X - 28);
-			int drawY = (int)(drawPlayer.position.Y + 4 + drawPlayer.gfxOffY);
-
-			if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
+			if (drawInfo.GetType() != null)
 			{
-				drawY = (int)(drawPlayer.position.Y + 2 + drawPlayer.gfxOffY);
-			}
+				Player drawPlayer = drawInfo.drawPlayer;
 
-			SpriteEffects flip = SpriteEffects.None;
+				int drawX = (int)(drawPlayer.position.X - 28);
+				int drawY = (int)(drawPlayer.position.Y + 4 + drawPlayer.gfxOffY);
 
-			if (drawPlayer.direction == -1)
-			{
-				if (drawPlayer.gravDir == -1)
+				if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
 				{
-					flip = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+					drawY = (int)(drawPlayer.position.Y + 2 + drawPlayer.gfxOffY);
+				}
+
+				SpriteEffects flip = SpriteEffects.None;
+
+				if (drawPlayer.direction == -1)
+				{
+					if (drawPlayer.gravDir == -1)
+					{
+						flip = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+
+						drawY = (int)(drawPlayer.position.Y + 30 + drawPlayer.gfxOffY);
+						drawX = (int)(drawPlayer.position.X + 30 + drawPlayer.gfxOffY);
+
+						if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
+						{
+							drawY = (int)(drawPlayer.position.Y + 32 + drawPlayer.gfxOffY);
+						}
+					}
+					else
+					{
+						flip = SpriteEffects.FlipHorizontally;
+						drawX = (int)(drawPlayer.position.X + 34);
+					}
+				}
+
+				if (drawPlayer.gravDir == -1 && drawPlayer.direction != -1)
+				{
+					flip = SpriteEffects.FlipVertically;
 
 					drawY = (int)(drawPlayer.position.Y + 30 + drawPlayer.gfxOffY);
-					drawX = (int)(drawPlayer.position.X + 30 + drawPlayer.gfxOffY);
 
 					if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
 					{
 						drawY = (int)(drawPlayer.position.Y + 32 + drawPlayer.gfxOffY);
 					}
 				}
-				else
-				{
-					flip = SpriteEffects.FlipHorizontally;
-					drawX = (int)(drawPlayer.position.X + 34);
-				}
+
+				DrawData data = new DrawData(texture_Color, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.hairColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
+
+				Main.playerDrawData.Add(data);
 			}
-
-			if (drawPlayer.gravDir == -1 && drawPlayer.direction != -1)
-			{
-				flip = SpriteEffects.FlipVertically;
-
-				drawY = (int)(drawPlayer.position.Y + 30 + drawPlayer.gfxOffY);
-
-				if ((drawPlayer.bodyFrame.Y >= (7 * 56) && drawPlayer.bodyFrame.Y <= (9 * 56)) || (drawPlayer.bodyFrame.Y >= (14 * 56) && drawPlayer.bodyFrame.Y <= (16 * 56)))
-				{
-					drawY = (int)(drawPlayer.position.Y + 32 + drawPlayer.gfxOffY);
-				}
-			}
-
-			DrawData data = new DrawData(texture_Color, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.hairColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
-
-			Main.playerDrawData.Add(data);
 		});
 	}
 }
