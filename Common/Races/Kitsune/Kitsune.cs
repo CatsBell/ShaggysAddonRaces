@@ -46,6 +46,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		private static int oldTailCount = 1;
 		private Mod ShaggyAddonRaces = ModLoader.GetMod("ShaggyAddonRaces");
 		private MrPlagueRaces.MrPlagueRacesPlayer modPlayer = null;
+		private Player globalPlayer = null;
 		private static Texture2D texture_Color;
 		private static Texture2D texture_Tail;
 
@@ -53,7 +54,8 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		{
 			if (modPlayer == null)
 			{
-				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>(); // grab the modPlayer object associated with it.
+				globalPlayer = player;
+				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 				Item familiarshirt = new Item();
@@ -74,6 +76,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			if (modPlayer.RaceStats)
 			{
 				tailCount = 1;
+
 				player.statLifeMax2 -= 25;
 				player.statManaMax2 += player.statManaMax2 / 5;
 				player.statDefense -= 2;
@@ -129,9 +132,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					player.manaRegenBonus += 10;
 					tailCount++;
 				}
+
 				if (tailCount != oldTailCount)
 				{
-					Main.NewText("Kitsune Tail Count: " + tailCount);
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
@@ -154,9 +157,13 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
-			Init(player);
-			if (modPlayer != null)
+			if (player == null)
 			{
+				player = globalPlayer;
+			}
+			if (modPlayer != null && player != null)
+			{
+
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
 				layers.Insert(tailLayer, KitsuneTail);
 
@@ -170,8 +177,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			}
 		}
 
-		// Original tail code provided by Kazun (thanks!). Refactored by AxeBane to remove some jank and somehow introduce some more.
-
+		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
