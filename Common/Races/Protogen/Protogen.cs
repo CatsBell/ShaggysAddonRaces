@@ -31,43 +31,15 @@ namespace ShaggyAddonRaces.Common.Races.Protogen
         public override bool DarkenEnvironment => false;
 
         public override string RaceHealthDisplayText => "[c/34EB93:+20%]";
-        public override string RaceRegenerationDisplayText => "";
         public override string RaceManaDisplayText => "[c/FF4F64:-20%]";
-        public override string RaceManaRegenerationDisplayText => "";
         public override string RaceDefenseDisplayText => "[c/34EB93:+4]";
-        public override string RaceDamageReductionDisplayText => "";
-        public override string RaceThornsDisplayText => "";
-        public override string RaceLavaResistanceDisplayText => "";
-        public override string RaceMeleeDamageDisplayText => "";
         public override string RaceRangedDamageDisplayText => "[c/34EB93:+20%]";
         public override string RaceMagicDamageDisplayText => "[c/FF4F64:-20%]";
-        public override string RaceSummonDamageDisplayText => "";
-        public override string RaceMeleeSpeedDisplayText => "";
-        public override string RaceArmorPenetrationDisplayText => "";
-        public override string RaceBulletDamageDisplayText => "";
-        public override string RaceRocketDamageDisplayText => "";
         public override string RaceManaCostDisplayText => "[c/FF4F64:+20%]";
-        public override string RaceMinionKnockbackDisplayText => "";
-        public override string RaceMinionsDisplayText => "";
-        public override string RaceSentriesDisplayText => "";
-        public override string RaceMeleeCritChanceDisplayText => "";
         public override string RaceRangedCritChanceDisplayText => "[c/34EB93:+10%]";
-        public override string RaceMagicCritChanceDisplayText => "";
-        public override string RaceMiningSpeedDisplayText => "";
-        public override string RaceBuildingSpeedDisplayText => "";
-        public override string RaceBuildingWallSpeedDisplayText => "";
-        public override string RaceBuildingRangeDisplayText => "";
-        public override string RaceArrowDamageDisplayText => "";
-        public override string RaceMovementSpeedDisplayText => "";
-        public override string RaceJumpSpeedDisplayText => "";
-        public override string RaceFallDamageResistanceDisplayText => "";
-        public override string RaceAllDamageDisplayText => "";
-        public override string RaceFishingSkillDisplayText => "";
-        public override string RaceAggroDisplayText => "";
-        public override string RaceRunSpeedDisplayText => "";
-        public override string RaceRunAccelerationDisplayText => "";
+		public override string RaceFallDamageResistanceDisplayText => "[c/34EB93:+10%]";
 
-        public override string RaceGoodBiomesDisplayText => "Sky / Space";
+		public override string RaceGoodBiomesDisplayText => "Sky / Space";
 		public override string RaceBadBiomesDisplayText => "None";
 
 		public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -89,7 +61,8 @@ namespace ShaggyAddonRaces.Common.Races.Protogen
             var modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
             if (modPlayer.RaceStats)
             {
-                player.rangedDamage += player.rangedDamage / 5;
+				player.extraFall += player.extraFall / 10;
+				player.rangedDamage += player.rangedDamage / 5;
                 player.rangedCrit += player.rangedCrit / 10;
                 player.statDefense += 4;
                 player.statLifeMax2 += player.statLifeMax2 / 5;
