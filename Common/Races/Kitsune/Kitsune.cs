@@ -161,7 +161,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			{
 				player = globalPlayer;
 			}
-			if (modPlayer != null && player != null)
+			if (modPlayer != null && player != null && layers != null)
 			{
 
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
