@@ -3,5 +3,5 @@
 obj/
 bin/
 .editorconfig
-/ShaggyAddonRaces - Backup.csproj
+ShaggyAddonRaces - Backup.csproj
 *.cache
