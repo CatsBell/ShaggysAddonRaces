@@ -1,6 +1,10 @@
 displayName = [c/3ABC7A:Shaggy's Addon Races]
 author = Shaggy and the Mystery Gang
+<<<<<<< HEAD
 version = 1.4
+=======
+version = 1.3.4
+>>>>>>> 1e5989fbbb64f6c0f1b53f99d36626658c6208e7
 homepage = https://discord.gg/DzUXUVWhd6
 modReferences = MrPlagueRaces
 includeSource = true

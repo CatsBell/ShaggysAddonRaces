@@ -1,4 +1,3 @@
-//Bruh this race was so hard
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
