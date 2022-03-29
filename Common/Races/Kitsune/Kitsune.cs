@@ -52,24 +52,49 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		private void Init(Player player)
 		{
+			// Redundant initialize every frame.
 			if (modPlayer == null)
 			{
+				ShaggyAddonRaces.Logger.Info("Modplayer Null, defining...");
 				globalPlayer = player;
 				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
-				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
-				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 				Item familiarshirt = new Item();
 				Item familiarpants = new Item();
 				familiarshirt.SetDefaults(ItemID.FamiliarShirt);
 				familiarpants.SetDefaults(ItemID.FamiliarPants);
 			}
+
+			if (texture_Color == null || texture_Tail == null)
+			{
+				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+			}
 		}
 
-		public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		// Proper initialization function that defines everything. In theory.
+		public override void Initialize(Player player) {
+			globalPlayer = player;
+			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+			Item familiarshirt = new Item();
+			Item familiarpants = new Item();
+			familiarshirt.SetDefaults(ItemID.FamiliarShirt);
+			familiarpants.SetDefaults(ItemID.FamiliarPants);
+			texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+			texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+		}
+
+        public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
 			return true;
 		}
-
+		public override void Load(Player player)
+		{
+			var modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+			if (modPlayer.RaceStats)
+			{
+				player.statLife += 0;
+			}
+		}
 		public override void ResetEffects(Player player)
 		{
 			Init(player);
@@ -135,6 +160,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 				if (tailCount != oldTailCount)
 				{
+					// Update the tail sprites!
 					oldTailCount = tailCount;
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
@@ -144,6 +170,11 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		public override void ModifyDrawInfo(Player player, Mod mod, ref PlayerDrawInfo drawInfo)
 		{
+			if (player == null)
+			{
+				player = globalPlayer;
+				ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
+			}
 			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>(); // Have to fetch the modplayer again for character screen shenanigans
 			if (modPlayer.resetDefaultColors && Main.gameMenu)
 			{
@@ -154,34 +185,41 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				player.skinVariant = 0;
 			}
 		}
-
+		
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
 			if (player == null)
 			{
 				player = globalPlayer;
+				ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
 			}
+			
+			if (layers == null)
+			{
+				ShaggyAddonRaces.Logger.Warn("LAYERS IS NULL");
+			}
+
+			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+
 			if (modPlayer != null && player != null && layers != null)
 			{
-
 				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
 				layers.Insert(tailLayer, KitsuneTail);
-
 				layers.Insert(tailLayer + 1, KitsuneTail_Color);
 				base.ModifyDrawLayers(player, layers);
-
+				ShaggyAddonRaces.Logger.Info(layers.ToArray());
 				bool hideChestplate = modPlayer.hideChestplate;
 				bool hideLeggings = modPlayer.hideLeggings;
-
-				modPlayer.updatePlayerSprites("MrPlagueRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+				modPlayer.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
 			}
+			
 		}
 
 		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-
+			
 			int drawX = (int)(drawPlayer.position.X - 28);
 			int drawY = (int)(drawPlayer.position.Y + 4 + drawPlayer.gfxOffY);
 
@@ -189,7 +227,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			{
 				drawY = (int)(drawPlayer.position.Y + 2 + drawPlayer.gfxOffY);
 			}
-
+			
 			SpriteEffects flip = SpriteEffects.None;
 
 			if (drawPlayer.direction == -1)
@@ -225,7 +263,11 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				}
 			}
 
-			Main.playerDrawData.Add(new DrawData(texture_Tail, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.skinColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0));
+			if (texture_Tail != null)
+			{
+				DrawData data = new DrawData(texture_Tail, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.skinColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
+				Main.playerDrawData.Add(data);
+			}
 		});
 
 		public readonly PlayerLayer KitsuneTail_Color = new PlayerLayer("Kitsune", "KitsuneTail_Color", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
@@ -275,9 +317,11 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				}
 			}
 
-			DrawData data = new DrawData(texture_Color, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.hairColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
-
-			Main.playerDrawData.Add(data);
+			if (texture_Color != null)
+			{
+				DrawData data = new DrawData(texture_Color, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.hairColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
+				Main.playerDrawData.Add(data);
+			}
 		});
 	}
 }
