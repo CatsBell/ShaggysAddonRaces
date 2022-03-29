@@ -1,7 +1,7 @@
 .vs/
 .git/
 obj/
+bin/
 .editorconfig
 ShaggyAddonRaces - Backup.csproj
 *.cache
-/bin/Debug/net45
