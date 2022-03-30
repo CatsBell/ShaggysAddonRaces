@@ -50,6 +50,19 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		private static Texture2D texture_Color;
 		private static Texture2D texture_Tail;
 
+		private const bool DEBUG = false;
+
+		// Debugging log function.
+		private void Log(object message)
+        {
+			if (DEBUG)
+			{
+				#pragma warning disable CS0162 // Unreachable code detected
+				ShaggyAddonRaces.Logger.Debug(message);
+				#pragma warning restore CS0162 // Unreachable code detected
+			}
+        }
+
 		private void Init(Player player)
 		{
 			// Redundant initialize every frame.
@@ -191,36 +204,47 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
-			if (player == null)
+			try
 			{
-				player = globalPlayer;
-				ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
-			}
-			
-			if (layers == null)
-			{
-				ShaggyAddonRaces.Logger.Warn("LAYERS IS NULL");
-			}
+				if (player == null)
+				{
+					player = globalPlayer;
+					ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
+				}
+				if (layers == null)
+				{
+					ShaggyAddonRaces.Logger.Warn("LAYERS IS NULL");
+				}
 
-			modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
-
-			if (texture_Color.IsDisposed || texture_Tail.IsDisposed)
-			{
-				// catch to make absolutely sure stuff isn't broken
-				Initialize(player);
+				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
+				if (texture_Color == null || texture_Tail == null)
+                {
+					ShaggyAddonRaces.Logger.Info("Tails are null... Acquiring.");
+					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+				}
+				if (texture_Color.IsDisposed || texture_Tail.IsDisposed)
+				{
+					// catch to make absolutely sure stuff isn't broken
+					ShaggyAddonRaces.Logger.Info("Tails are disposed... re-acquiring.");
+					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+				}
+				if (modPlayer != null && player != null && layers != null)
+				{
+					int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
+					layers.Insert(tailLayer, KitsuneTail);
+					layers.Insert(tailLayer + 1, KitsuneTail_Color);
+					base.ModifyDrawLayers(player, layers);
+					bool hideChestplate = modPlayer.hideChestplate;
+					bool hideLeggings = modPlayer.hideLeggings;
+					modPlayer.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+				}
+			} catch (System.Exception e) {
+				// Literally just pipe all errors to the log file rather than crash immediately and hope for the best.
+				ShaggyAddonRaces.Logger.Error("Error in ModifyDraw Layers! Now printing error to log...");
+				ShaggyAddonRaces.Logger.Error(e);
 			}
-
-			if (modPlayer != null && player != null && layers != null)
-			{
-				int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
-				layers.Insert(tailLayer, KitsuneTail);
-				layers.Insert(tailLayer + 1, KitsuneTail_Color);
-				base.ModifyDrawLayers(player, layers);
-				bool hideChestplate = modPlayer.hideChestplate;
-				bool hideLeggings = modPlayer.hideLeggings;
-				modPlayer.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
-			}
-			
 		}
 
 		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
