@@ -56,14 +56,14 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		// Debugging log function.
 		private void Log(object message)
-        {
+		{
 			if (DEBUG)
 			{
 				#pragma warning disable CS0162 // Unreachable code detected
 				ShaggyAddonRaces.Logger.Debug(message);
 				#pragma warning restore CS0162 // Unreachable code detected
 			}
-        }
+		}
 
 		private void Init(Player player)
 		{
@@ -206,6 +206,12 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				player.skinVariant = 0;
 			}
 		}
+
+		public void UpdateTailTexture()
+		{
+			texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+			texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+		}
 		
 		public override void ModifyDrawLayers(Player player, List<PlayerLayer> layers)
 		{
@@ -222,7 +228,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					ShaggyAddonRaces.Logger.Warn("LAYERS IS NULL");
 				}
 				if (texture_Color == null || texture_Tail == null)
-                {
+				{
 					ShaggyAddonRaces.Logger.Info("Tails are null... Acquiring.");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
@@ -238,7 +244,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				{
 					int tailLayer = layers.IndexOf(PlayerLayer.Legs) - 1;
 					layers.Insert(tailLayer, KitsuneTail);
-					layers.Insert(tailLayer + 1, KitsuneTail_Color);
+					//layers.Insert(tailLayer + 1, KitsuneTail_Color);
 					base.ModifyDrawLayers(player, layers);
 					bool hideChestplate = mP.hideChestplate;
 					bool hideLeggings = mP.hideLeggings;
@@ -252,7 +258,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		}
 
 		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
-		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
+		public static readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 
 			Player drawPlayer = drawInfo.drawPlayer;
@@ -300,14 +306,18 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				}
 			}
 
-			if (texture_Tail != null)
+			try
 			{
 				DrawData data = new DrawData(texture_Tail, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.skinColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
 				Main.playerDrawData.Add(data);
 			}
+			catch (System.Exception)
+			{
+				// Fail silently.
+			}
 		});
 
-		public readonly PlayerLayer KitsuneTail_Color = new PlayerLayer("Kitsune", "KitsuneTail_Color", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
+		public static readonly PlayerLayer KitsuneTail_Color = new PlayerLayer("Kitsune", "KitsuneTail_Color", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
 
@@ -354,10 +364,15 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				}
 			}
 
-			if (texture_Color != null)
+
+			try
 			{
 				DrawData data = new DrawData(texture_Color, (new Vector2(drawX, drawY) - Main.screenPosition), null, drawPlayer.GetImmuneAlphaPure(Lighting.GetColor(drawX / 16, drawY / 16, drawPlayer.hairColor), drawInfo.shadow), 0f, new Vector2(20, 28), 1f, flip, 0);
 				Main.playerDrawData.Add(data);
+			}
+			catch
+			(System.Exception) {
+				// Fail silently.
 			}
 		});
 	}
