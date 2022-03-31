@@ -54,14 +54,14 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 		// Debugging log function.
 		private void Log(object message)
-        {
+		{
 			if (DEBUG)
 			{
 				#pragma warning disable CS0162 // Unreachable code detected
 				ShaggyAddonRaces.Logger.Debug(message);
 				#pragma warning restore CS0162 // Unreachable code detected
 			}
-        }
+		}
 
 		private void Init(Player player)
 		{
@@ -218,7 +218,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				if (texture_Color == null || texture_Tail == null)
-                {
+				{
 					ShaggyAddonRaces.Logger.Info("Tails are null... Acquiring.");
 					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
