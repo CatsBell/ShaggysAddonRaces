@@ -42,13 +42,15 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		public override string RaceRunAccelerationDisplayText => "[c/34EB93:+20%]";
 		public static bool RacialSTATSSAR;
 
-		private static int tailCount = 1;
-		private static int oldTailCount = 1;
+		private int tailCount = 1;
+		private int oldTailCount = 1;
 		private Mod ShaggyAddonRaces = ModLoader.GetMod("ShaggyAddonRaces");
 		private MrPlagueRaces.MrPlagueRacesPlayer modPlayer = null;
 		private Player globalPlayer = null;
 		private static Texture2D texture_Color;
 		private static Texture2D texture_Tail;
+
+		public Item[] tails = new Item[9];
 
 		private const bool DEBUG = false;
 
@@ -97,6 +99,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 			ShaggyAddonRaces.Logger.Info("Defining tails...");
 			texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 			texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+
+			tails.SetValue(new Kitsune_Tail1(), 0);
+			Log(tails[0]);
 		}
 
 		public override bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -249,6 +254,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 		//Original tail code provided by Kazun (thanks!). Refactored by AxeBane.
 		public readonly PlayerLayer KitsuneTail = new PlayerLayer("Kitsune", "KitsuneTail", PlayerLayer.Hair, delegate (PlayerDrawInfo drawInfo)
 		{
+
 			Player drawPlayer = drawInfo.drawPlayer;
 			
 			int drawX = (int)(drawPlayer.position.X - 28);
