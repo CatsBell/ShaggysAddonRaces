@@ -211,12 +211,11 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					player = globalPlayer;
 					ShaggyAddonRaces.Logger.Warn("Player undefined, assigned globalPlayer value.");
 				}
+				var mP = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				if (layers == null)
 				{
 					ShaggyAddonRaces.Logger.Warn("LAYERS IS NULL");
 				}
-
-				modPlayer = player.GetModPlayer<MrPlagueRaces.MrPlagueRacesPlayer>();
 				if (texture_Color == null || texture_Tail == null)
                 {
 					ShaggyAddonRaces.Logger.Info("Tails are null... Acquiring.");
@@ -236,9 +235,9 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 					layers.Insert(tailLayer, KitsuneTail);
 					layers.Insert(tailLayer + 1, KitsuneTail_Color);
 					base.ModifyDrawLayers(player, layers);
-					bool hideChestplate = modPlayer.hideChestplate;
-					bool hideLeggings = modPlayer.hideLeggings;
-					modPlayer.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
+					bool hideChestplate = mP.hideChestplate;
+					bool hideLeggings = mP.hideLeggings;
+					mP.updatePlayerSprites("ShaggyAddonRaces/Content/RaceTextures/", "ShaggyAddonRaces/Content/RaceTextures/Kitsune/", hideChestplate, hideLeggings, 4, 0, "Kitsune", false, false, false);
 				}
 			} catch (System.Exception e) {
 				// Literally just pipe all errors to the log file rather than crash immediately and hope for the best.
