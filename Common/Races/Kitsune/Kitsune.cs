@@ -79,8 +79,7 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 
 			if (texture_Color == null || texture_Tail == null)
 			{
-				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
-				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+				FetchTails();
 			}
 		}
 
@@ -178,9 +177,15 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				{
 					// Update the tail sprites!
 					oldTailCount = tailCount;
-					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
-					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
+					FetchTails();
 				}
+			}
+		}
+		
+		private void FetchTails() {
+			if (!Main.dedServ) {
+				texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+				texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
 			}
 		}
 
@@ -220,15 +225,13 @@ namespace ShaggyAddonRaces.Common.Races.Kitsune
 				if (texture_Color == null || texture_Tail == null)
 				{
 					ShaggyAddonRaces.Logger.Info("Tails are null... Acquiring.");
-					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
-					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+					FetchTails();
 				}
 				if (texture_Color.IsDisposed || texture_Tail.IsDisposed)
 				{
 					// catch to make absolutely sure stuff isn't broken
 					ShaggyAddonRaces.Logger.Info("Tails are disposed... re-acquiring.");
-					texture_Tail = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount);
-					texture_Color = ShaggyAddonRaces.GetTexture("Content/RaceTextures/Kitsune/Tail/Kitsune_Tail" + tailCount + "_Color");
+					FetchTails();
 				}
 				if (modPlayer != null && player != null && layers != null)
 				{
