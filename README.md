@@ -1,5 +1,7 @@
 # Shaggy's Addon Races
 
+## Please note that this is for the 1.3 version of the mod. 1.4 has a separate repository!
+
 ## Prerequisites
 
 This mod is built for tModLoader, available via Steam if you're somehow accessing this without knowing about it!
